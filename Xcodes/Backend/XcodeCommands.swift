@@ -49,8 +49,9 @@ struct InstallButton: View {
     }
 
     private func install() {
-        isLoading = true
         guard let xcode = xcode else { return }
+
+        isLoading = appState.authenticationState != .unauthenticated
         appState.checkMinVersionAndInstall(id: xcode.id)
     }
 }
